@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:grade_avarega_app/constants/app_constants.dart';
 import 'package:grade_avarega_app/helper/data_helper.dart';
 import 'package:grade_avarega_app/model/lesson.dart';
+import 'package:grade_avarega_app/widgets/list_of_lessons.dart';
 import 'package:grade_avarega_app/widgets/show_avarage.dart';
 
 class CalculateAvaragePage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -47,8 +49,13 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
           ),
         //list
         Expanded(
-          child: Container(
-            color: Colors.blue,
+          child: ListOfLesson(
+            onDismiss: (index){
+              DataHelper.allAddedLessons.removeAt(index);
+              setState(() {
+                
+              });
+            },
           ),
         )
       ],)
@@ -92,7 +99,7 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
           return null;
       },
       decoration: InputDecoration(
-        hintText: 'Ders Giriniz',
+        hintText: 'enter a lesson',
         border: OutlineInputBorder(borderRadius: Constant.borderRadius,borderSide:BorderSide.none),
         filled: true,
         fillColor: Constant.mainColor.shade100,
