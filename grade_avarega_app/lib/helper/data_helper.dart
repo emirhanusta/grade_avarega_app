@@ -27,7 +27,7 @@ class DataHelper {
   static List<double> _allECTS(){
     return List.generate(10, (index) => index+1);
   }
-    static double _convetLetterToMark(String harf) {
+    static double _convertLetterToMark(String harf) {
     switch (harf) {
       case 'AA':
         return 4;
@@ -53,7 +53,7 @@ class DataHelper {
   }
 
   static List<DropdownMenuItem<double>> allLetterGrades(){
-    return _allLetterGrades().map((e) => DropdownMenuItem(child: Text(e),value: _convetLetterToMark(e),)).toList();
+    return _allLetterGrades().map((e) => DropdownMenuItem(child: Text(e),value: _convertLetterToMark(e),)).toList();
   }
 
   static List<DropdownMenuItem<double>> allECTS(){
