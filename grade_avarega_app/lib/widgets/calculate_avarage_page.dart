@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:grade_avarega_app/constants/app_constants.dart';
 import 'package:grade_avarega_app/helper/data_helper.dart';
 import 'package:grade_avarega_app/model/lesson.dart';
+import 'package:grade_avarega_app/widgets/ects_dropdown_widget.dart';
 import 'package:grade_avarega_app/widgets/list_of_lessons.dart';
 import 'package:grade_avarega_app/widgets/show_avarage.dart';
+
+import 'letter_dropdown_widget.dart';
 
 class CalculateAvaragePage extends StatefulWidget {
   CalculateAvaragePage({Key? key}) : super(key: key);
@@ -74,8 +77,16 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildLetterGrade(),
-            _buildECTS(),
+            LetterDropdownWidget(
+              onLetterEntered:(letter){
+                selectedValueLetterGrade=letter;
+              }
+            ),
+            ECTSDropdownWidget(
+              onECTSEntered:(ects){
+                selectedValueECTS=ects;
+              }
+            ),
             IconButton(onPressed: _addLessonAndCalculateAvarage, icon: Icon(Icons.arrow_forward_ios),color: Constant.mainColor,),
           ],
         ),
@@ -99,66 +110,10 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
           return null;
       },
       decoration: InputDecoration(
-        hintText: 'enter a lesson',
+        hintText: 'enter a lesson name',
         border: OutlineInputBorder(borderRadius: Constant.borderRadius,borderSide:BorderSide.none),
         filled: true,
         fillColor: Constant.mainColor.shade100,
-      ),
-    );
-  }
-
-  _buildLetterGrade() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Container(
-          alignment: Alignment.center,
-          padding: Constant.dropdownPadding,
-          decoration: BoxDecoration(
-            color: Constant.mainColor.shade100.withOpacity(0.9),
-            borderRadius: Constant.borderRadius,
-          ),
-          child: DropdownButton<double>(
-            value: selectedValueLetterGrade,
-            elevation: 16,
-            iconEnabledColor: Constant.mainColor.shade300,
-            onChanged: (enteredValue){
-              setState(() {
-                selectedValueLetterGrade=enteredValue!;
-              });
-            },
-            underline: Container(),
-            items: DataHelper.allLetterGrades(),
-          ),
-        ),
-      ),
-    );
-  }
-
-  _buildECTS() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Container(
-          alignment: Alignment.center,
-          padding: Constant.dropdownPadding,
-          decoration: BoxDecoration(
-            color: Constant.mainColor.shade100.withOpacity(0.9),
-            borderRadius: Constant.borderRadius,
-          ),
-          child: DropdownButton<double>(
-            value: selectedValueECTS,
-            elevation: 16,
-            iconEnabledColor: Constant.mainColor.shade300,
-            onChanged: (enteredValue){
-              setState(() {
-                selectedValueECTS=enteredValue!;
-              });
-            },
-            underline: Container(),
-            items: DataHelper.allECTS(),
-          ),
-        ),
       ),
     );
   }
