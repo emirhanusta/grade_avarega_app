@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.grade_avarega_app">
    <application
-        android:label="grade_avarega_app"
+        android:label="Grade Avarage"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
