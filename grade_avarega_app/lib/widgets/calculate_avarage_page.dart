@@ -110,7 +110,7 @@ class _CalculateAvaragePageState extends State<CalculateAvaragePage> {
           return null;
       },
       decoration: InputDecoration(
-        hintText: 'enter a lesson name',
+        hintText: 'enter lesson name',
         border: OutlineInputBorder(borderRadius: Constant.borderRadius,borderSide:BorderSide.none),
         filled: true,
         fillColor: Constant.mainColor.shade100,
